@@ -1,15 +1,15 @@
-FROM quay.io/spryor/tgis
+FROM quay.io/spryor/tgis:latest
 
 RUN yum -y install git && \
     git clone https://github.com/caikit/caikit-nlp && \
-    pip install --no-cache-dir -y ./caikit-nlp && \
+    pip install --no-cache-dir ./caikit-nlp && \
     mkdir -p /opt/models && \
     mkdir -p /caikit/config
 
-COPY caikit-tgis-local.yml /caikit/config
+COPY caikit-tgis.template.yml /caikit/config
+COPY start-serving.sh /
 
 ENV RUNTIME_LIBRARY='caikit_nlp' \
-    RUNTIME_LOCAL_MODELS_DIR='/opt/models' \
-    CONFIG_FILES='/caikit/config/caikit-tgis-local.yml'
+    RUNTIME_LOCAL_MODELS_DIR='/opt/models'
 
-CMD [ "python3 -m caikit.runtime.grpc_server" ]
+CMD [ "start-serving.sh" ]

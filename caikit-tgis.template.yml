@@ -22,7 +22,7 @@ module_backends:
           http_port: null
           health_poll_delay: 1.0
         connection:
-          hostname: ""
+          hostname: "TGIS_HOSTNAME"
           ca_cert_file: null
           client_cert_file: null
           client_key_file: null
