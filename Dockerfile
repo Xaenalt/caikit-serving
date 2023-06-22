@@ -1,7 +1,9 @@
 FROM quay.io/spryor/tgis:latest
 
+ARG CAIKIT_NLP_REPO=https://github.com/caikit/caikit-nlp
+
 RUN yum -y install git && \
-    git clone https://github.com/caikit/caikit-nlp && \
+    git clone ${CAIKIT_NLP_REPO} && \
     pip install --no-cache-dir ./caikit-nlp && \
     mkdir -p /opt/models && \
     mkdir -p /caikit/config
