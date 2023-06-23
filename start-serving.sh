@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# This script is necessary to set the hostname for TGIS
+
+# In the case where it's local, having TGIS_HOSTNAME env variable
+# unset will cause it to attempt to start TGIS locally to the
+# container
+
 TGIS_CONFIG_TEMPLATE='/caikit/config/caikit-tgis.template.yml'
 TGIS_CONFIG_FILE='/caikit/config/caikit-tgis.yml'
 
