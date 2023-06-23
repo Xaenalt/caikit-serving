@@ -19,4 +19,4 @@ COPY start-serving.sh /
 ENV RUNTIME_LIBRARY='caikit_nlp' \
     RUNTIME_LOCAL_MODELS_DIR='/opt/models'
 
-CMD [ "start-serving.sh" ]
+CMD [ "/start-serving.sh" ]
