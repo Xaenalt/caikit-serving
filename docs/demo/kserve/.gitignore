@@ -1,0 +1,6 @@
+kserve/
+knative-kserve/
+minio-current.yaml
+minio-secret-current.yaml
+.cache/
+kustomize/
