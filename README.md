@@ -4,7 +4,7 @@ Setting up an OpenShift cluster is outside the scope of this document
 
 1. Set up Istio: [Istio install doc](https://knative.dev/docs/install/installing-istio)
 2. Set up KNative Serving: [Knative Serving install doc](https://knative.dev/docs/install/yaml-install/serving/install-serving-with-yaml/)
-3. Install Cert Manager: [Cert Manager install doc](https://cert-manager.io/docs/installation/)
+3. Install Cert Manager (optional): [Cert Manager install doc](https://cert-manager.io/docs/installation/)
 4. Install KServe:
 
 ```bash
@@ -92,9 +92,9 @@ oc apply -f caikit-isvc.yaml
 2. Determine endpoint
 
 ```bash
-oc get isvc
+oc get ksvc
 
-# Take note of the URL, it will be of the format: isvc-name.project.apps.cluster-name.openshiftapps.com
+# Take note of the URL, it will be of the format: ksvc-name.project.apps.cluster-name.openshiftapps.com
 ```
 
 3. Use gRPC to do inference
@@ -103,7 +103,7 @@ oc get isvc
 # -insecure because the cert is self-signed in this demo environment
 # The header mm-model-id is the name of the model loaded in caikit, named the same as the directory the caikit model resides in
 
-grpcurl -insecure -d '{"text": "At what temperature does liquid Nitrogen boil?"}' -H "mm-model-id: flan-t5-xl-caikit" isvc-name.project.apps.cluster-name.openshiftapps.com:443 caikit.runtime.Nlp.NlpService/TextGenerationTaskPredict
+grpcurl -insecure -d '{"text": "At what temperature does liquid Nitrogen boil?"}' -H "mm-model-id: flan-t5-xl-caikit" ksvc-name.project.apps.cluster-name.openshiftapps.com:443 caikit.runtime.Nlp.NlpService/TextGenerationTaskPredict
 ```
 
 Output will be similar to (may not be identical, and like sample output may be incorrect):
